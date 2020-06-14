@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:svg="http://www.w3.org/2000/svg",version="1.1"></html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+
+<body>
+  <div>
+  </div>
+
+  <script>
+    var cricles = [{cx:150,cy:200,r:30},{cx:250,cy:200,r:30}]
+    var svg = d3.select('body').append('svg').attr('width',400).attr('height',400)
+    var drag = d3.drag()   //创建一个拖拽行为
+                  // .origin(function(d,i){  //设置起点坐标
+                  //   return {x:d.cx,y:d.cy}
+                  // })
+                  .on('start',function(d){   //dragstart监听器
+                    console.log("拖拽开始");    
+                  })
+                  .on('end',function(d){
+                    console.log('拖拽结束');          
+                  })
+                  .on('drag',function(d){   //drag的监听器
+                    d3.select(this)
+                      .attr('cx',d3.cx = d3.event.x)
+                      .attr('cy',d3.cy=d3.event.y)
+                  });
+
+    svg.selectAll('circle').data(cricles).enter()
+      .append('circle').attr('cx',function(d){return d.cx})
+      .attr('cy',function(d){return d.cy})
+      .attr('r',function(d){return d.r})
+      .attr('fill','black')
+      .call(drag)
+      // var drag = d3.behavior.drag()   //创建一个拖拽行为
+      //             .origin(function(d,i){  //设置起点坐标
+      //               return {x:d.cx,y:d.cy}
+      //             })
+      //             .on('dragstart',function(d){   //dragstart监听器
+      //               console.log("拖拽开始");    
+      //             })
+      //             .on('dragend',function(d){
+      //               console.log('拖拽结束');          
+      //             })
+      //             .on('drag',function(d){   //drag的监听器
+      //               d3.select(this)
+      //                 .attr('cx',d3.cx = d3.event.x)
+      //                 .attr('cy',d3.cy=d3.event.y)
+      //             });
+   
+  </script>
+</body>
+
+</html>

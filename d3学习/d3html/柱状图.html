@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html xmlns:svg="http://www.w3.org/2000/svg",version="1.1">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+
+<body>
+
+
+
+  <script>
+    var dataset = [50,43,120,87,99,167,142];
+    var width = 400;
+    var height = 400;
+    var svg = d3.select('body').append('svg').attr('width',width ).attr('height',height )//创建svg元素
+    var padding = {top:20,right:20,bottom:20,left:20} //矩形区域内的留白位置
+    var rectStep = 35; //前一个矩形开始位置到下一个矩形开始位置的距离，单位像素
+    var rectWidth = 30; //矩形宽度。rectStep需要大于rectWidth
+    //绘制图形
+    var rect = svg.selectAll('rect') //获取一个空集
+                  .data(dataset)  //绑定数据
+                  .enter() //获取enter部分
+                  .append('rect') //添加rect元素
+                  .attr('fill','steelblue') //设置颜色为steelblue
+                  .attr("x",function(d,i){  //设置矩阵的x坐标
+                    return padding.left+i * rectStep
+                  })
+                  .attr('y',function(d,i){ //设置矩阵的y坐标
+                    return height-padding.bottom-d;
+                  })
+                  .attr('width',rectWidth)
+                  .attr("height",function(d){
+                    return d
+                  })
+    //添加lable
+    var text = svg.selectAll('text') //获取一个空集
+                  .data(dataset)
+                  .enter()
+                  .append('text') //添加text标签
+                  .attr('fill','white') //字体颜色
+                  .attr('font-size',"14px") //字体大小
+                  .attr('text-anchor','middle')
+                  .attr('x',function(d,i){
+                    return padding.left+i * rectStep
+                  })
+                  .attr('y',function(d){ //设置矩阵的y坐标
+                    return height-padding.bottom-d;
+                  })
+                  .attr("dx",rectWidth/2) //相对(x,y)平移的大小
+                  .attr('dy','1em') //相对(x,y)平移的大小
+                  .text(function(d){
+                    return d
+                  })
+  </script>
+</body>
+
+</html>

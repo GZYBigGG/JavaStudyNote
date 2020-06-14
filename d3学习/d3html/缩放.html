@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:svg="http://www.w3.org/2000/svg",version="1.1"></html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>缩放</title>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+
+<body>
+  <div>
+  </div>
+
+  <script>
+    var circles = [{cx:150,cy:200,r:30},{cx:220,cy:200,r:30},{cx:150,cy:270,r:30},{cx:220,cy:270,r:30}]
+    var svg = d3.select('body').append('svg').attr('width',400).attr('height',400)
+    var zoom = d3.zoom().scaleExtent([1,10]).on('zoom',function(d){
+      d3.select(this).attr('transform',
+                    "translate(" + d3.event.translate + ")" +
+                   "scale(" + d3.event.scale +")");
+    })
+    
+    var g = svg.append('g').call(zoom)
+    g.selectAll('circle').data(circles).enter().append('circle')
+      .attr('cx',function(d){
+        return d.cx
+      })
+      .attr('cy',function(d){
+        return d.cy
+      })
+      .attr('r',function(d){
+        return d.r
+      })
+      .attr('fill',"black")
+  </script>
+</body>
+
+</html>

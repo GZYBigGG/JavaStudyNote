@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:svg="http://www.w3.org/2000/svg",version="1.1"></html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+
+<body>
+  <div>
+  </div>s
+
+  <script>
+    var width = 600
+    var height = 600
+    var svg = d3.select('body').append('svg').attr('width',width).attr('height',height)
+    //用于坐标轴的线性比例尺
+    var xScale = d3.scaleLinear().domain([0,10]).range([0,300]);
+    var axis = d3.axisBottom(xScale)  //定义坐标轴，使用比例尺，定义刻度方向向下
+    var gAxis = svg.append("g") //添加g元素,用来控制坐标轴的所有图形元素
+                    .attr("transform", "translate(80,80)")  //平移到（80,80）
+    axis(gAxis)  //在gAxis中绘制坐标轴
+  </script>
+</body>
+
+</html>

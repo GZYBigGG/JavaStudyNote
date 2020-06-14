@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html xmlns:svg="http://www.w3.org/2000/svg",version="1.1">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+
+<body>
+  <div>
+    <p>A</p>
+    <p>B</p>
+    <p>C</p>
+  </div>
+
+
+  <script>
+    var p = d3.select('body').selectAll('p')
+    p.datum(7);
+    console.log(p)
+  
+  </script>
+</body>
+
+</html>
